@@ -5,6 +5,8 @@
 #include <vector>
 using namespace std;
 
+bool isUnique(string, vector<string>);
+
 int main()
 {
   string fileName = "";
@@ -13,7 +15,7 @@ int main()
   size_t position;
  
   cout<<"Please enter the file to be opened:\n";
-  getline(cin, fileName);
+  cin>>fileName;
 
   reader.open(fileName, ios::in);
   vector<string>hexValues;
@@ -31,13 +33,17 @@ int main()
         {
           if (line[index+3] < '0' || line[index+3] > '9' && line[index+3] < 'a' || line[index+3] > 'f')
           {
+            if(isUnique(line.substr(position,3), hexValues) == true){
             hexValues.push_back(line.substr(position, 3));
-            break; 
+            break;
+            } 
           }
           else
           {
+            if(isUnique(line.substr(position, 6), hexValues)== true){
             hexValues.push_back(line.substr(position, 6));
-            break; 
+            break;
+            } 
           } 
         }  
        }
@@ -54,3 +60,14 @@ int main()
 
   return 0;
 }
+
+bool isUnique(string hexColor, vector<string> compareColors){
+  for(int index = 0; index < compareColors.size(); index++){
+    if(compareColors[index] == hexColor){
+      return false;
+    }   
+  }
+  return true;
+}
+
+
