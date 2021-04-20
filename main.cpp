@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-bool isUnique(string, vector<string>);
+bool isUnique(string, vector<string> &);
 
 int main()
 {
@@ -29,9 +29,12 @@ int main()
 
        if( line[position] ) 
        {   
-        for (int index = position += 1; index < line.size() && (line[index] >= '0' && line[index] <= '9' || line[index] >= 'a' && line[index] <= 'f') ; index++ ) 
+        for (int index = position += 1; index < line.size() && 
+            (line[index] >= '0' && line[index] <= '9' || 
+             line[index] >= 'a' && line[index] <= 'f'); index++ ) 
         {
-          if (line[index+3] < '0' || line[index+3] > '9' && line[index+3] < 'a' || line[index+3] > 'f')
+          if (line[index+3] < '0' || line[index+3] > '9' && 
+              line[index+3] < 'a' || line[index+3] > 'f')
           {
             if(isUnique(line.substr(position,3), hexValues) == true){
             hexValues.push_back(line.substr(position, 3));
@@ -61,7 +64,7 @@ int main()
   return 0;
 }
 
-bool isUnique(string hexColor, vector<string> compareColors){
+bool isUnique(string hexColor, vector<string> & compareColors){
   for(int index = 0; index < compareColors.size(); index++){
     if(compareColors[index] == hexColor){
       return false;
@@ -69,5 +72,6 @@ bool isUnique(string hexColor, vector<string> compareColors){
   }
   return true;
 }
+
 
 
