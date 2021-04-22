@@ -79,12 +79,11 @@ bool isUnique(string hexColor, vector<string> & compareColors){
 
 void HextoDecimal(vector<string> hexColors){
   for(int index = 0; index < hexColors.size(); index++){
-  
-unsigned int x;   
-stringstream my_ss;
-my_ss << hex << hexColors[index];
-my_ss >> x;
-cout << static_cast<int>(x) <<endl;
+  unsigned int x;   
+  stringstream my_ss;
+  my_ss << hex << hexColors[index];
+  my_ss >> x;
+  cout << static_cast<int>(x) <<endl;
   }
 }
 
