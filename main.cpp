@@ -3,9 +3,11 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <sstream>
 using namespace std;
 
 bool isUnique(string, vector<string> &);
+void HextoDecimal(vector<string> hexColors);
 
 int main()
 {
@@ -54,12 +56,14 @@ int main()
   }
   reader.close();
   
-  cout<<"Hexadecimal color values:"<<endl;
+  cout<<"There are "<< hexValues.size() << " unique Hexadecimal colors in "<< fileName << ":"<<endl;
   
   for(int counter = 0; counter < hexValues.size(); counter++)
   {
     cout<< "#" <<hexValues[counter]<<endl;
   }
+
+  HextoDecimal(hexValues);
 
   return 0;
 }
@@ -73,5 +77,15 @@ bool isUnique(string hexColor, vector<string> & compareColors){
   return true;
 }
 
+void HextoDecimal(vector<string> hexColors){
+  for(int index = 0; index < hexColors.size(); index++){
+  
+unsigned int x;   
+stringstream my_ss;
+my_ss << hex << hexColors[index];
+my_ss >> x;
+cout << static_cast<int>(x) <<endl;
+  }
+}
 
 
