@@ -7,7 +7,7 @@
 using namespace std;
 
 bool isUnique(string, vector<string> &);
-void HextoDecimal(vector<string> hexColors);
+void distinguishColors(vector<string> &);
 
 int main()
 {
@@ -38,16 +38,18 @@ int main()
           if (line[index+3] < '0' || line[index+3] > '9' && 
               line[index+3] < 'a' || line[index+3] > 'f')
           {
-            if(isUnique(line.substr(position,3), hexValues) == true){
-            hexValues.push_back(line.substr(position, 3));
-            break;
+            if(isUnique(line.substr(position,3), hexValues) == true)
+            {
+              hexValues.push_back(line.substr(position, 3));
+              break;
             } 
           }
           else
           {
-            if(isUnique(line.substr(position, 6), hexValues)== true){
-            hexValues.push_back(line.substr(position, 6));
-            break;
+            if(isUnique(line.substr(position, 6), hexValues)== true)
+            {
+              hexValues.push_back(line.substr(position, 6));
+              break;
             } 
           } 
         }  
@@ -56,34 +58,73 @@ int main()
   }
   reader.close();
   
-  cout<<"There are "<< hexValues.size() << " unique Hexadecimal colors in "<< fileName << ":"<<endl;
+  cout<<"There are "<<hexValues.size()<<" unique Hexadecimal colors in "<<fileName<<":"<<endl;
   
   for(int counter = 0; counter < hexValues.size(); counter++)
   {
-    cout<< "#" <<hexValues[counter]<<endl;
+    cout<<"#"<<hexValues[counter]<<endl;
   }
 
-  HextoDecimal(hexValues);
+  cout<<"The following colors are hard to distinguish from one another:"<<endl;
+  
+  distinguishColors(hexValues);
 
   return 0;
 }
 
-bool isUnique(string hexColor, vector<string> & compareColors){
-  for(int index = 0; index < compareColors.size(); index++){
-    if(compareColors[index] == hexColor){
+bool isUnique(string hexColor, vector<string> & compareColors)
+{
+  for(int index = 0; index < compareColors.size(); index++)
+  {
+    if(compareColors[index] == hexColor)
+    {
       return false;
     }   
   }
   return true;
 }
 
-void HextoDecimal(vector<string> hexColors){
-  for(int index = 0; index < hexColors.size(); index++){
-  unsigned int x;   
-  stringstream my_ss;
-  my_ss << hex << hexColors[index];
-  my_ss >> x;
-  cout << static_cast<int>(x) <<endl;
+void distinguishColors(vector<string> & hexColors)
+{
+  string redHex;
+  string greenHex;
+  string blueHex;
+  int red;
+  int green;
+  int blue;
+
+  for(int index = 0; index < hexColors.size(); index++)
+  {
+    if(hexColors[index] == "fff")
+    {
+      hexColors[index] = "ffffff";
+    }
+    else if(hexColors[index] == "000")
+    {
+    hexColors[index] = "000000";
+    }
+
+    redHex = hexColors[index].substr(0,2);
+    greenHex = hexColors[index].substr(2,2);
+    blueHex = hexColors[index].substr(4,2);
+    
+    stringstream redValue;
+    redValue << hex << redHex;
+    redValue >> red;
+
+    stringstream greenValue;
+    greenValue << hex << greenHex;
+    greenValue >> green;
+
+    stringstream blueValue;
+    blueValue << hex << blueHex;
+    blueValue >> blue;
+
+   if(red - green <= 90 && green - blue <= 90 && 
+      hexColors[index] != "ffffff")
+   {
+     cout<< "#" << hexColors[index]<<endl;
+   }
   }
 }
 
