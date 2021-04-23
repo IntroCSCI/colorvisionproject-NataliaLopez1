@@ -6,7 +6,7 @@
 #include <sstream>
 using namespace std;
 
-bool isUnique(string, vector<string> &);
+bool isUnique(string, const vector<string> &);
 void distinguishColors(vector<string> &);
 
 int main()
@@ -65,14 +65,14 @@ int main()
     cout<<"#"<<hexValues[counter]<<endl;
   }
 
-  cout<<"The following colors are hard to distinguish from one another:"<<endl;
+  cout<<"The following Hexadecimal colors are difficult to distinguish from one another:"<<endl;
   
   distinguishColors(hexValues);
 
   return 0;
 }
 
-bool isUnique(string hexColor, vector<string> & compareColors)
+bool isUnique(string hexColor, const vector<string> & compareColors)
 {
   for(int index = 0; index < compareColors.size(); index++)
   {
@@ -123,7 +123,7 @@ void distinguishColors(vector<string> & hexColors)
    if(red - green <= 90 && green - blue <= 90 && 
       hexColors[index] != "ffffff")
    {
-     cout<< "#" << hexColors[index]<<endl;
+     cout<<"#"<< hexColors[index]<<endl;
    }
   }
 }
