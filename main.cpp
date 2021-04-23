@@ -101,7 +101,7 @@ void distinguishColors(vector<string> & hexColors)
     }
     else if(hexColors[index] == "000")
     {
-    hexColors[index] = "000000";
+      hexColors[index] = "000000";
     }
 
     redHex = hexColors[index].substr(0,2);
