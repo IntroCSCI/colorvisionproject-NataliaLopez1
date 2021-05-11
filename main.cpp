@@ -70,7 +70,7 @@ int main()
   
   for(int counter = 0; counter < hexValues.size(); counter++)
   {
-    cout<<hexValues[counter]<<endl;
+    cout<<"#"<<hexValues[counter]<<endl;
   }
 
   cout<<"The following Hexadecimal colors are difficult to distinguish from one another:"<<endl;
@@ -136,25 +136,15 @@ void distinguishColors(vector<string> & hexColors)
   }
 }
 
-string isHexColor(string line)
+string color::isHexColor(string line)
 {
   size_t position;
   position = line.find("#");
 
   if(line[position])
   {
-    string threeDigitHex = line.substr(position, 4);
-    string sixDigitHex = line.substr(position, 7);
-
-    for(int i = position+=1; i < threeDigitHex.size(); i++)
-    {
-      if(!(threeDigitHex[i] >= 'a' && threeDigitHex[i] <= 'f') &&
-        !(threeDigitHex[i] >= '0' && threeDigitHex[i] <= '9'))
-      {
-        return "";
-      }
-    }
-    return threeDigitHex;
+    string threeDigitHex = line.substr(position+1, 3);
+    string sixDigitHex = line.substr(position+1, 6);
 
     for(int i = position+=1; i < sixDigitHex.size(); i++)
     {
@@ -165,6 +155,17 @@ string isHexColor(string line)
       }
     }
     return sixDigitHex;
+   
+   
+    for(int i = position+=1; i < threeDigitHex.size(); i++)
+    {
+      if(!(threeDigitHex[i] >= 'a' && threeDigitHex[i] <= 'f') &&
+        !(threeDigitHex[i] >= '0' && threeDigitHex[i] <= '9'))
+      {
+        return "";
+      }
+    }
+    return threeDigitHex;
   }
   return "";
 }

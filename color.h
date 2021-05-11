@@ -14,7 +14,7 @@ class color
 
 
   public:
-    void isHexColor(string);
+    string isHexColor(string);
     bool isUnique(string, vector<string>);
 };
 
