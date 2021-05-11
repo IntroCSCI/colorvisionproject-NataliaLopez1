@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include "color.h"
+
 using namespace std;
 
 bool isUnique(string, const vector<string> &);
@@ -15,12 +17,15 @@ int main()
   ifstream reader;
   string line = "";
   size_t position;
- 
-  cout<<"Please enter the file to be opened:\n";
-  cin>>fileName;
-
-  reader.open(fileName, ios::in);
   vector<string>hexValues;
+ 
+  do
+  {
+    cout<<"Please enter the file to be opened:\n";
+    cin>>fileName;
+    reader.open(fileName, ios::in);
+  }
+  while(!reader.is_open());
 
   if( reader.is_open() )
   {
