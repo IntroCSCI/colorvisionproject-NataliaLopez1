@@ -33,7 +33,9 @@ int main()
     { 
       getline(reader,line);
       //position = line.find("#");
-      cout<<isHexColor(line);
+      if(isUnique(isHexColor(line),hexValues)==true){
+      hexValues.push_back(isHexColor(line));
+      }
         /*
        if( line[position] ) 
        {   
@@ -68,7 +70,7 @@ int main()
   
   for(int counter = 0; counter < hexValues.size(); counter++)
   {
-    cout<<"#"<<hexValues[counter]<<endl;
+    cout<<hexValues[counter]<<endl;
   }
 
   cout<<"The following Hexadecimal colors are difficult to distinguish from one another:"<<endl;
@@ -141,8 +143,8 @@ string isHexColor(string line)
 
   if(line[position])
   {
-    string threeDigitHex = line.substr(position, 3);
-    string sixDigitHex = line.substr(position, 6);
+    string threeDigitHex = line.substr(position, 4);
+    string sixDigitHex = line.substr(position, 7);
 
     for(int i = position+=1; i < threeDigitHex.size(); i++)
     {
