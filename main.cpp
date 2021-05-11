@@ -136,36 +136,26 @@ void distinguishColors(vector<string> & hexColors)
   }
 }
 
-string color::isHexColor(string line)
+string isHexColor(string line)
 {
-  size_t position;
-  position = line.find("#");
-
-  if(line[position])
+  if(line.size() > 0 && line[0]=='#')
   {
-    string threeDigitHex = line.substr(position+1, 3);
-    string sixDigitHex = line.substr(position+1, 6);
-
-    for(int i = position+=1; i < sixDigitHex.size(); i++)
+    for(int i = 1; i < line.size(); i++)
     {
-      if(!(sixDigitHex[i] >= 'a' && sixDigitHex[i] <= 'f') &&
-        !(sixDigitHex[i] >= '0' && sixDigitHex[i] <= '9'))
+      if(!(line[i] >= 'a' && line[i] <= 'f') &&
+        !(line[i] >= '0' && line[i] <= '9'))
       {
         return "";
       }
     }
-    return sixDigitHex;
-   
-   
-    for(int i = position+=1; i < threeDigitHex.size(); i++)
+    if(line.size() == 4 || line.size() ==7)
     {
-      if(!(threeDigitHex[i] >= 'a' && threeDigitHex[i] <= 'f') &&
-        !(threeDigitHex[i] >= '0' && threeDigitHex[i] <= '9'))
-      {
-        return "";
-      }
+      return line;
     }
-    return threeDigitHex;
+    else
+    {
+      return "";
+    }
   }
   return "";
 }
