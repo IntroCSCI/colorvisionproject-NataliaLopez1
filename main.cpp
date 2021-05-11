@@ -5,7 +5,6 @@
 #include <vector>
 #include <sstream>
 #include "color.h"
-
 using namespace std;
 
 bool isUnique(string, const vector<string> &);
