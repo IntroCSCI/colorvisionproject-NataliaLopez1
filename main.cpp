@@ -9,13 +9,14 @@ using namespace std;
 
 bool isUnique(string, const vector<string> &);
 void distinguishColors(vector<string> &);
+string isHexColor(string);
 
 int main()
 {
   string fileName = "";
   ifstream reader;
   string line = "";
-  size_t position;
+  //size_t position;
   vector<string>hexValues;
  
   do
@@ -31,8 +32,9 @@ int main()
     while( !reader.eof() )
     { 
       getline(reader,line);
-      position = line.find("#");
-
+      //position = line.find("#");
+      cout<<isHexColor(line);
+        /*
        if( line[position] ) 
        {   
         for (int index = position += 1; index < line.size() && 
@@ -57,7 +59,7 @@ int main()
             } 
           } 
         }  
-       }
+       }*/
     }  
   }
   reader.close();
@@ -130,6 +132,39 @@ void distinguishColors(vector<string> & hexColors)
      cout<<"#"<< hexColors[index]<<endl;
    }
   }
+}
+
+string isHexColor(string line)
+{
+  size_t position;
+  position = line.find("#");
+
+  if(line[position])
+  {
+    string threeDigitHex = line.substr(position, 3);
+    string sixDigitHex = line.substr(position, 6);
+
+    for(int i = position+=1; i < threeDigitHex.size(); i++)
+    {
+      if(!(threeDigitHex[i] >= 'a' && threeDigitHex[i] <= 'f') &&
+        !(threeDigitHex[i] >= '0' && threeDigitHex[i] <= '9'))
+      {
+        return "";
+      }
+    }
+    return threeDigitHex;
+
+    for(int i = position+=1; i < sixDigitHex.size(); i++)
+    {
+      if(!(sixDigitHex[i] >= 'a' && sixDigitHex[i] <= 'f') &&
+        !(sixDigitHex[i] >= '0' && sixDigitHex[i] <= '9'))
+      {
+        return "";
+      }
+    }
+    return sixDigitHex;
+  }
+  return "";
 }
 
 
