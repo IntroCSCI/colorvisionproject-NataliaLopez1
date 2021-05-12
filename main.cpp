@@ -16,8 +16,9 @@ int main()
   string fileName = "";
   ifstream reader;
   string line = "";
-  //size_t position;
+  int position;
   vector<string>hexValues;
+  color hexColor;
  
   do
   {
@@ -32,10 +33,16 @@ int main()
     while( !reader.eof() )
     { 
       getline(reader,line);
-      //position = line.find("#");
-      if(isUnique(isHexColor(line),hexValues)==true){
-      hexValues.push_back(isHexColor(line));
+      position = line.find("#");
+
+      while(position<line.size())
+      {
+        string hexString = line.substr(position);
+        cout<<hexColor.isHexColor(hexString)<<endl;
+        position=line.find("#",position+1);
       }
+      
+
         /*
        if( line[position] ) 
        {   
@@ -136,28 +143,5 @@ void distinguishColors(vector<string> & hexColors)
   }
 }
 
-string isHexColor(string line)
-{
-  if(line.size() > 0 && line[0]=='#')
-  {
-    for(int i = 1; i < line.size(); i++)
-    {
-      if(!(line[i] >= 'a' && line[i] <= 'f') &&
-        !(line[i] >= '0' && line[i] <= '9'))
-      {
-        return "";
-      }
-    }
-    if(line.size() == 4 || line.size() ==7)
-    {
-      return line;
-    }
-    else
-    {
-      return "";
-    }
-  }
-  return "";
-}
 
 

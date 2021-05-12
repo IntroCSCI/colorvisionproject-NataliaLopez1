@@ -9,8 +9,9 @@ using std::vector;
 class color
 {
   private:
-    string line;
+    string hexString;
     vector <string> hexColors;
+    int position;
 
 
   public:
