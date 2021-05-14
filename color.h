@@ -13,6 +13,7 @@ class color
     string hexColor;
 
   public:
+    color();
     void isHexColor(string);
     string isUnique(const vector<string> & );
 };

@@ -5,21 +5,23 @@
 using std::string;
 using std::vector;
 
+color::color():hexColor{""}{}
+
 void color::isHexColor(string hexString)
 {
- counter = 0;
- for(int index = 1; index < hexString.size(); index++)
+  counter = 0;
+  for(int index = 1; index < hexString.size(); index++)
+  {
+    if((hexString[index] >= 'a' && hexString[index] <= 'f') ||
+      (hexString[index] >= '0' && hexString[index] <= '9'))
     {
-      if((hexString[index] >= 'a' && hexString[index] <= 'f') ||
-        (hexString[index] >= '0' && hexString[index] <= '9'))
-      {
-        counter = counter+=1;
-      }
-      else
-      {
-        break;
-      }
+      counter = counter+=1;
     }
+    else
+    {
+      break;
+    }
+  }
   if(counter==6)
   {
     hexColor = hexString.substr(0,7);

@@ -36,7 +36,6 @@ int main()
       while(position<line.size())
       {
         string hexString = line.substr(position);
-        
         hexColor.isHexColor(hexString);
         
         if(hexColor.isUnique(hexValues) != "" )
@@ -100,11 +99,11 @@ void distinguishColors(vector<string> & hexColors)
     blueValue << hex << blueHex;
     blueValue >> blue;
 
-   if(red - green <= 90 && green - blue <= 90 && 
+    if(red - green <= 90 && green - blue <= 90 && 
       hexColors[index] != "#ffffff")
-   {
-     cout<<hexColors[index]<<endl;
-   }
+    {
+      cout<<hexColors[index]<<endl;
+    }
   }
 }
 
