@@ -16,12 +16,12 @@ int main()
   string line = "";
   int position;
   vector<string>hexValues;
-  color hexColor;
+  color hexadecimalColors;
  
   do
   {
     cout<<"Please enter the file to be opened:\n";
-    cin>>fileName;
+    getline(cin, fileName);
     reader.open(fileName, ios::in);
   }
   while(!reader.is_open());
@@ -36,11 +36,11 @@ int main()
       while(position<line.size())
       {
         string hexString = line.substr(position);
-        hexColor.isHexColor(hexString);
+        hexadecimalColors.isHexColor(hexString);
         
-        if(hexColor.uniqueHex(hexValues) != "" )
+        if(hexadecimalColors.uniqueHex(hexValues) != "" )
         {
-          hexValues.push_back(hexColor.uniqueHex(hexValues));
+          hexValues.push_back(hexadecimalColors.uniqueHex(hexValues));
         }
         
         position=line.find("#",position+1);
