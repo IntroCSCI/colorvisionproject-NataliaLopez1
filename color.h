@@ -9,14 +9,12 @@ using std::vector;
 class color
 {
   private:
-    string hexString;
-    vector <string> hexColors;
-    int position;
-
+    int counter;
+    string hexColor;
 
   public:
-    string isHexColor(string);
-    bool isUnique(string, vector<string>);
+    void isHexColor(string);
+    string isUnique(const vector<string> & );
 };
 
 #endif

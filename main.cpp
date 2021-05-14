@@ -7,9 +7,7 @@
 #include "color.h"
 using namespace std;
 
-bool isUnique(string, const vector<string> &);
 void distinguishColors(vector<string> &);
-string isHexColor(string);
 
 int main()
 {
@@ -38,37 +36,16 @@ int main()
       while(position<line.size())
       {
         string hexString = line.substr(position);
-        cout<<hexColor.isHexColor(hexString)<<endl;
-        position=line.find("#",position+1);
-      }
-      
-
-        /*
-       if( line[position] ) 
-       {   
-        for (int index = position += 1; index < line.size() && 
-            (line[index] >= '0' && line[index] <= '9' || 
-             line[index] >= 'a' && line[index] <= 'f'); index++ ) 
+        
+        hexColor.isHexColor(hexString);
+        
+        if(hexColor.isUnique(hexValues) != "" )
         {
-          if (line[index+3] < '0' || line[index+3] > '9' && 
-              line[index+3] < 'a' || line[index+3] > 'f')
-          {
-            if(isUnique(line.substr(position,3), hexValues) == true)
-            {
-              hexValues.push_back(line.substr(position, 3));
-              break;
-            } 
-          }
-          else
-          {
-            if(isUnique(line.substr(position, 6), hexValues)== true)
-            {
-              hexValues.push_back(line.substr(position, 6));
-              break;
-            } 
-          } 
-        }  
-       }*/
+          hexValues.push_back(hexColor.isUnique(hexValues));
+        }
+        
+        position=line.find("#",position+1);
+      }   
     }  
   }
   reader.close();
@@ -77,7 +54,7 @@ int main()
   
   for(int counter = 0; counter < hexValues.size(); counter++)
   {
-    cout<<"#"<<hexValues[counter]<<endl;
+    cout<<hexValues[counter]<<endl;
   }
 
   cout<<"The following Hexadecimal colors are difficult to distinguish from one another:"<<endl;
@@ -85,18 +62,6 @@ int main()
   distinguishColors(hexValues);
 
   return 0;
-}
-
-bool isUnique(string hexColor, const vector<string> & compareColors)
-{
-  for(int index = 0; index < compareColors.size(); index++)
-  {
-    if(compareColors[index] == hexColor)
-    {
-      return false;
-    }   
-  }
-  return true;
 }
 
 void distinguishColors(vector<string> & hexColors)
@@ -110,18 +75,18 @@ void distinguishColors(vector<string> & hexColors)
 
   for(int index = 0; index < hexColors.size(); index++)
   {
-    if(hexColors[index] == "fff")
+    if(hexColors[index] == "#fff")
     {
-      hexColors[index] = "ffffff";
+      hexColors[index] = "#ffffff";
     }
-    else if(hexColors[index] == "000")
+    else if(hexColors[index] == "#000")
     {
-      hexColors[index] = "000000";
+      hexColors[index] = "#000000";
     }
 
-    redHex = hexColors[index].substr(0,2);
-    greenHex = hexColors[index].substr(2,2);
-    blueHex = hexColors[index].substr(4,2);
+    redHex = hexColors[index].substr(1,2);
+    greenHex = hexColors[index].substr(3,2);
+    blueHex = hexColors[index].substr(5,2);
     
     stringstream redValue;
     redValue << hex << redHex;
@@ -136,9 +101,9 @@ void distinguishColors(vector<string> & hexColors)
     blueValue >> blue;
 
    if(red - green <= 90 && green - blue <= 90 && 
-      hexColors[index] != "ffffff")
+      hexColors[index] != "#ffffff")
    {
-     cout<<"#"<< hexColors[index]<<endl;
+     cout<<hexColors[index]<<endl;
    }
   }
 }

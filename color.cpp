@@ -5,13 +5,13 @@
 using std::string;
 using std::vector;
 
-string color::isHexColor(string hexString)
+void color::isHexColor(string hexString)
 {
- int counter = 0;
- for(int i = 1; i < hexString.size(); i++)
+ counter = 0;
+ for(int index = 1; index < hexString.size(); index++)
     {
-      if((hexString[i] >= 'a' && hexString[i] <= 'f') ||
-        (hexString[i] >= '0' && hexString[i] <= '9'))
+      if((hexString[index] >= 'a' && hexString[index] <= 'f') ||
+        (hexString[index] >= '0' && hexString[index] <= '9'))
       {
         counter = counter+=1;
       }
@@ -20,16 +20,25 @@ string color::isHexColor(string hexString)
         break;
       }
     }
-  if(counter>=6)
+  if(counter==6)
   {
-    return hexString.substr(0,7);
+    hexColor = hexString.substr(0,7);
   }
-  else if(counter>=3)
+  else if(counter==3)
   {
-    return hexString.substr(0,4);
-  }
-  else
-  {
-    return "";
+    hexColor = hexString.substr(0,4);
   }
 }
+
+string color::isUnique(const vector<string> & compareColors)
+{
+  for(int index = 0; index < compareColors.size(); index++)
+  {
+    if(compareColors[index] == hexColor)
+    {
+      return "";
+    }   
+  }
+  return hexColor;
+}
+
