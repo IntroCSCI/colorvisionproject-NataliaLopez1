@@ -32,7 +32,7 @@ void color::isHexColor(string hexString)
   }
 }
 
-string color::isUnique(const vector<string> & compareColors)
+string color::uniqueHex(const vector<string> & compareColors)
 {
   for(int index = 0; index < compareColors.size(); index++)
   {

@@ -15,7 +15,7 @@ class color
   public:
     color();
     void isHexColor(string);
-    string isUnique(const vector<string> & );
+    string uniqueHex(const vector<string> & );
 };
 
 #endif

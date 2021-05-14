@@ -38,9 +38,9 @@ int main()
         string hexString = line.substr(position);
         hexColor.isHexColor(hexString);
         
-        if(hexColor.isUnique(hexValues) != "" )
+        if(hexColor.uniqueHex(hexValues) != "" )
         {
-          hexValues.push_back(hexColor.isUnique(hexValues));
+          hexValues.push_back(hexColor.uniqueHex(hexValues));
         }
         
         position=line.find("#",position+1);
