@@ -56,7 +56,7 @@ The following Hexadecimal colors are difficult to distinguish from one another:
 
 ### Variables and Data Types
 
-The data type `string`, which stores text, was used to store the name of the file while the data type `ifstream` allows us to read information from that file. The integer `position` was assigned the value of the first location of `#` because hexadecimal color values follow this symbol.   
+The data type `string`, which stores text, was used to store the name of the file while the data type `ifstream` allows us to read information from that file. The integer `position` was assigned the value of the first location of `#` because hexadecimal color values follow this symbol. The string `hexString` is initialized to `line.substr(position)`. `hexString` is the argument of the member function `isHexColor`.   
 
 ### Console Input and Output
 
@@ -64,7 +64,7 @@ A `cout` statement is used to ask the user to enter the file to be opened. `getl
 
 ### Decisions
 
-An `if` statement is used to specify the code to be executed if the file is open. Another `if` statement is used to determine if the string `hexColor` is unique from the strings of the vector `compareColors`. If `hexColor` is unique, `hexColor` is returned. If `hexColor` is not unique, then an empty string is returned. An additional `if` statement is used to determine if the hexadecimal color values will be added to the vector `hexValues`.  
+An `if` statement is used to specify the code to be executed if the file is open. Another `if` statement is used to determine if the string `hexColor` is unique from the strings of the vector `compareColors`. If `hexColor` is unique, `hexColor` is returned. If `hexColor` is not unique, then an empty string is returned. An additional `if` statement is used to determine if the hexadecimal color values will be added to the vector `hexValues`. Within the function `distinguishColors`, an `if` and an `else if` statement are used to convert white (`#fff`) and black (`#000`) to their 6-digit equivalents: `#ffffff` and `#000000` respectively. 
 
 ### Iteration
 
@@ -80,10 +80,10 @@ In order to access the `vector` library, I included `#include <vector>` in my pr
 
 ### Functions
 
-The member function, `uniqueHex`, returns a `string`. `uniqueHex` takes in a `vector<string>`. The `vector<string>` is passed by `const` reference because the `vector<string>` could potentially be very large but I used `const` because I do not want to permanently change the `vector<string>`. `uniqueHex` compares the member variable `hexColor` to all of the strings in the vector. If the string is equal to any string in the vector, `uniqueHex` returns a blank string, but if it is unique, `uniqueHex` returns `hexColor`. The function is called within an `if` statement, if `uniqueHex` is not a blank string, then the string is inserted at the end of `hexValues` using `.push_back()`.
+The member function, `uniqueHex`, returns a `string` and its argument is `hexValues`. `uniqueHex` takes in a `vector<string>`. The `vector<string>` is passed by `const` reference because the `vector<string>` could potentially be very large but I used `const` because I do not want to permanently change the `vector<string>`. `uniqueHex` compares the member variable `hexColor` to all of the strings in the vector. If the string is equal to any string in the vector, `uniqueHex` returns a blank string, but if it is unique, `uniqueHex` returns `hexColor`. The function is called within an `if` statement, if `uniqueHex` is not a blank string, then the string is inserted at the end of `hexValues` using `.push_back()`. 
 
 The function `distinguishColors` has a return type of `void` because it does not return anything; it just displays to the console. `vector<string>` is passed by reference because the `vector<string>` could potentially be very large and because I changed the 3-digit hexadecimal color values to their 6-digit equivalent forms so I could be working with a sole string size. `distinguishColors` separates the hexadecimal color strings into their red, green, and blue parts. Then it converts those substrings to hexadecimal integers. It then identifies which colors would be difficult to distinguish from one another and displays them to the console. The argument of the function is `hexValues`.
 
 ### Classes
 
-The class `color` has member functions which identify if a string is a hexadecimal color value and whether a hexadecimal color value is unique. Both member functions are public while the member variables are private so that they can only be accessed/changed through the member functions `uniqueHex` and `isHexColor`. This decision was based on the principle of Information Hiding. `color` is reuseable as it is abstract(generic), everything that is a member of  the class is something that belongs to `color`(encapsulation), member variables are private so that they are used properly(Information Hiding), and `color` has its own `.h` and `.cpp` files so that if one wishes to reuse `color`, one can just copy and paste the files.
+The class `color` has member functions which identify if a string is a hexadecimal color value and whether a hexadecimal color value is unique. Both member functions are public while the member variables are private so that they can only be accessed/changed through the member functions `uniqueHex` and `isHexColor`. This decision was based on the principle of Information Hiding. `color` is reuseable as it is abstract(generic), everything that is a member of  the class is something that belongs to `color`(Encapsulation), member variables are private so that they are used properly(Information Hiding), and `color` has its own `.h` and `.cpp` files so that if one wishes to reuse `color`, one can just copy and paste the files.
